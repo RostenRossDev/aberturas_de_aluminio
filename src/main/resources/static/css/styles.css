@@ -1,0 +1,173 @@
+/* Estilo para los enlaces de navegación */
+.nav-link {
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.nav-link:hover {
+    color: #000000; /* Cambia el color del texto al pasar el mouse */
+    border-bottom: 1px solid #000000; /* Línea bajo el enlace al pasar el mouse */
+    cursor: pointer; /* Cambia el cursor a una mano */
+}
+
+/* Estilo para el ícono del carrito */
+.btn-light {
+    position: relative;
+}
+
+.bi-cart {
+    font-size: 1.5rem;
+}
+
+.text-black {
+    color: #000000; /* Color negro */
+}
+
+.bg-olive {
+    background-color: #a5c926;
+}
+
+
+/* Media queries para responsividad para las barras de navegacion*/
+@media (max-width: 1000px) {
+    .top-bar {
+        font-size: 0.75rem; /* Tamaño de fuente más pequeño en dispositivos móviles */
+    }
+
+    .navbar-nav {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        border-bottom: 1px solid #eee;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-nav .collapse {
+        display: none;
+    }
+
+    .navbar-nav.show {
+        display: block;
+    }
+}
+ @media (max-width: 500px) {
+     .navbar {
+         padding: 0.7rem 1.4rem; /* 40% más alto */
+     }
+
+     .navbar-brand {
+         font-size: 1.75rem; /* 40% más grande */
+     }
+
+     .navbar-nav .nav-link {
+         font-size: 1.4rem; /* 40% más grande */
+         padding: 0.7rem 1.4rem; /* 40% más alto */
+     }
+
+     .navbar-toggler {
+         font-size: 1.75rem; /* 40% más grande */
+     }
+
+     .contact-bar {
+         padding: 0.7rem 1.4rem; /* 40% más alto */
+     }
+
+     .contact-bar .social-icons i {
+         font-size: 1.75rem; /* 40% más grande */
+     }
+ }
+
+ /* Imagen de fondo
+ .hero-image {
+     width: 100%;
+     height: 80vh;
+     object-fit: cover;
+     display: block;
+ }
+ */
+
+  /* Estilo de la imagen de fondo */
+.hero-image-container {
+     width: 100%;
+     height: 80vh; /* Altura completa de la ventana gráfica */
+     background-image: url('/img/ventanal.webp');
+     background-size: cover; /* Ajusta la imagen para cubrir el contenedor */
+     background-position: center; /* Centra la imagen en el contenedor */
+     background-repeat: no-repeat; /* Evita que la imagen se repita */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+}
+
+/* tEXTO SOBRE LA IMAGEN*/
+.content-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: absolute;
+    max-width: 100%; /* Ancho máximo del recuadro */
+    width: 70%; /* Ancho del recuadro en relación al contenedor */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
+    transition: width 0.3s ease; /* Transición suave para el ajuste de tamaño */
+}
+
+/* Ajuste para pantallas grandes */
+@media (min-width: 1000px) {
+    .content-box {
+        width: 53%; /* Aumento del ancho en pantallas grandes */
+        height: 60%;
+        padding:50px; /* Ajusta el padding para mantener el espacio interno */
+    }
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 500px) {
+    .content-box {
+        width: 90%; /* Ancho reducido en pantallas pequeñas */
+        margin: 0 auto; /* Centra el recuadro y agrega márgenes laterales */
+        padding: 20px; /* Ajusta el padding para mantener el espacio interno */
+        margin-top: 20%;
+    }
+}
+
+.small-text {
+    color: #a5c926; /* Color verde */
+    font-size: 20px;
+    font-weight: bold
+    margin-bottom: 10px;
+}
+
+.large-text {
+    color: #333; /* Color negro */
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.btn-custom {
+    background-color: #a5c926; /* Color del botón en hexadecimal */
+    color: white;
+    padding: 12px 24px; /* Tamaño del padding ajustado */
+    border: none;
+    border-radius: 25px; /* Esquinas redondeadas del botón */
+    text-decoration: none;
+    font-size: 18px; /* Tamaño de fuente del botón ajustado */
+    display: inline-block;
+    transition: transform 0.3s ease; /* Animación suave para el agrandamiento */
+}
+
+.btn-custom:hover {
+    transform: scale(1.1); /* Aumenta el tamaño del botón al pasar el mouse */
+}
+
+/* Evitar subrayado en enlaces */
+.content-box a {
+    text-decoration: none;
+    color: inherit; /* Hereda el color del contenedor */
+}
