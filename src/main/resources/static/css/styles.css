@@ -1,4 +1,12 @@
 /* Estilo para los enlaces de navegación */
+:root {
+    --olive-color: #a5c926;
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --padding: 16px;
+    --actual-color: var(--primary-color);
+}
+
 .nav-link {
     transition: color 0.3s, border-bottom 0.3s;
 }
@@ -115,7 +123,10 @@
     max-width: 100%; /* Ancho máximo del recuadro */
     width: 70%; /* Ancho del recuadro en relación al contenedor */
     box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
-    transition: width 0.3s ease; /* Transición suave para el ajuste de tamaño */
+    /*transition: width 0.3s ease; /* Transición suave para el ajuste de tamaño */
+    /*transform: translateY(20px);*/
+    transform: scale(0.1); /* Tamaño inicial muy pequeño */
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* Ajuste para pantallas grandes */
@@ -170,4 +181,123 @@
 .content-box a {
     text-decoration: none;
     color: inherit; /* Hereda el color del contenedor */
+}
+
+.content-box.visible {
+    opacity: 1;
+    transform: scale(1); /* Tamaño final original */
+}
+
+
+
+
+
+/*   #################################     CARROUSEL        */
+
+.carousel-section {
+    padding: 20px;
+}
+
+.carousel-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.carousel-title a {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.carousel-title a:hover {
+    text-decoration: underline;
+}
+
+.carousel-inner {
+    display: flex;
+}
+
+.carousel-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.carousel-content img {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    margin-top: auto;
+    text-align: center;
+}
+
+.product-name {
+    margin: 10px 0;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.btn-price {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20%; /* Posición debajo del carrusel */
+    transform: translateY(+10%); /* Ajusta la posición vertical de los botones */
+}
+
+.carousel-control-prev {
+    transform: translateX(-20%); /* Ajusta la posición horizontal de los botones */
+}
+.carousel-control-next {
+    transform: translateX(+20%); /* Ajusta la posición horizontal de los botones */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #3498db; /* Color de fondo de los botones */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.carousel-item {
+    transition: transform 0.2s ease-in-out; /* Cambia la duración aquí */
+}
+
+@media (max-width:767px) {
+    .carousel-control-prev,
+    .carousel-control-next {
+           top: 0%; /* Posición debajo del carrusel */
+    }
 }
