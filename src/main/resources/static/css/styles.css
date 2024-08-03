@@ -7,6 +7,10 @@
     --actual-color: var(--primary-color);
 }
 
+body{
+    background-color: #f8f8f8;
+}
+
 .olive-color {
     color: var(--olive-color);
 }
@@ -315,4 +319,76 @@
     .carousel-title a i {
         font-size: 0.9em;
     }
+}
+
+
+/* #### imagen item carousel */
+
+.zoom-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+}
+
+.image-container:hover .zoom-icon {
+    display: block;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.discount-badge {
+    color: #c92626;
+    font-weight: bold;
+}
+
+/* ######################################## linea horizontal */
+ .custom-hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    width: 90%;
+    margin: 40px auto; /* Ajusta el margen según necesites */
 }
