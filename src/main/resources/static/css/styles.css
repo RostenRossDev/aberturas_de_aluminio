@@ -7,6 +7,12 @@
     --actual-color: var(--primary-color);
 }
 
+.olive-color {
+    color: var(--olive-color);
+}
+
+
+
 .nav-link {
     transition: color 0.3s, border-bottom 0.3s;
 }
@@ -210,7 +216,6 @@
 .carousel-title a {
     font-size: 0.9em;
     font-weight: bold;
-    color: #007bff;
     text-decoration: none;
 }
 
@@ -254,7 +259,7 @@
 
 .btn-price {
     display: inline-block;
-    background-color: #3498db;
+    background-color: var(--olive-color);
     color: white;
     padding: 10px 20px;
     border-radius: 50px;
@@ -285,7 +290,7 @@
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: #3498db; /* Color de fondo de los botones */
+    background-color: var(--olive-color); /* Color de fondo de los botones */
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -299,5 +304,15 @@
     .carousel-control-prev,
     .carousel-control-next {
            top: 0%; /* Posición debajo del carrusel */
+    }
+}
+
+@media (max-width: 600px) {
+    .olive-color {
+        font-size: 0.7em !important; /* Tamaño de texto para pantallas pequeñas */
+    }
+
+    .carousel-title a i {
+        font-size: 0.9em;
     }
 }
