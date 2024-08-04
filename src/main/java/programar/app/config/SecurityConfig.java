@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/inicio", "/css/**", "/js/**", "/img/**", "/WEB-INF/views/**").permitAll()
+                .authorizeHttpRequests(auth -> auth.requestMatchers("create_preference", "/inicio", "/css/**", "/js/**", "/img/**", "/WEB-INF/views/**").permitAll()
                         .requestMatchers("/h2-**")
                         .hasRole("ADMIN")
                         .requestMatchers("/detalle-de-Compra", "/addToCart", "/updateCartItem", "/removeCartItem", "/sendCart")

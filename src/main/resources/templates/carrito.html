@@ -9,12 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <title>Aberturas Alverdi</title>
 </head>
 <body>
     <header th:insert="~{layout/layout :: header}"></header>
     <section class="carrito-section">
-
         <h1>Detalle de la compra</h1>
         <div id="cart-items">
             <div th:each="item : ${cartItems}" class="cart-item" th:attr="id='item-' + ${item.id}">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="item-controls">
                     <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', -1)'">-</button>
-                    <span class="quantity-display" th:attr="id='quantity-' + ${item.id}"  th:text="${item.quantity}">1</span>
+                    <span class="quantity-display" th:attr="id='quantity-' + ${item.id}" >1</span>
                     <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', 1)'">+</button>
                 </div>
                 <span class="item-total">
@@ -38,10 +38,15 @@
         <div class="cart-total">
             Total: $<span id="cart-total" th:text="${total}">0</span>
         </div>
+<!--        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" onclick="MP()">-->
+<!--            Comprar-->
+<!--        </button>-->
+        <div id="wallet_container"></div>
     </section>
     <hr class="custom-hr">
     <footer th:insert="~{layout/layout :: footer}"></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script th:src="@{/js/carrito.js}"></script>
+    <script th:src="@{/js/mercadopago.js}"></script>
 </body>
 </html>

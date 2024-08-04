@@ -620,3 +620,19 @@ header {
         justify-content: center; /* Centra el total general horizontalmente */
     }
 }
+
+
+/* ######################################################## BOTON MERCADO PAGO*/
+
+#wallet_container {
+    width: 20%; /* Ajusta el ancho al contenido del botón */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+/* Estilo para pantallas más pequeñas */
+@media (max-width: 767px) {
+    #wallet_container {
+        width: 60%; /* Ajusta el tamaño del botón al 60% del contenedor */
+        margin: 0 auto; /* Margen lateral del 20% */
+    }
+}

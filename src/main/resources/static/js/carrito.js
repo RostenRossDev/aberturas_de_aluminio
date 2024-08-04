@@ -32,12 +32,32 @@ function updateQuantity(productId, change) {
     }
 }
 
+
+function chargeQuantity() {
+    // Encuentra el producto en el carrito
+    const carts = JSON.parse(sessionStorage.getItem('cart')) || [];
+    console.log("carts: " + JSON.stringify(carts))
+
+    carts.forEach(product => {
+        let productIdStr = String(product.id);
+        // Actualiza la cantidad, asegurándose de que no sea menor a 1
+        console.log("quantity: " + product.quantity);
+        // Actualiza la visualización de la cantidad y el total
+        let quantityDisplay = document.getElementById(`quantity-` + productIdStr);
+        if (quantityDisplay) {
+            quantityDisplay.textContent = product.quantity;
+        }
+    });
+
+}
+
 function updateCartTotal() {
     let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
     let total = carts.reduce((sum, item) => sum + (item.price * (1 - item.discount / 100) * item.quantity), 0);
     let totalDisplay = document.getElementById('cart-total');
     if (totalDisplay) {
         totalDisplay.textContent = total.toFixed(2);
+        updateCartIcon();
     }
 }
 
@@ -84,4 +104,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Llamar a la función al cargar la página
     checkCartAndRedirect();
+});
+
+
+function updateCartIcon(){
+    const cartData = JSON.parse(sessionStorage.getItem('cart')) || [];
+    let quantity = 0;
+    if(cartData != null && cartData.length > 0){
+        quantity += cartData.reduce((total, item) => total + item.quantity, 0);
+    }
+    console.log("quantity: " + quantity)
+    let totalDisplay = document.getElementsByClassName('cartQuantity');
+    console.log("totalDisplay: " +totalDisplay)
+    if (totalDisplay) {
+        totalDisplay[0].textContent = quantity;
+        totalDisplay[1].textContent = quantity;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    updateCartIcon();
+    updateCartTotal();
+    chargeQuantity();
 });
