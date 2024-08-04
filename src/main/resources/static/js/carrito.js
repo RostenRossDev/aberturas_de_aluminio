@@ -20,39 +20,52 @@ function updateQuantity(productId, change) {
     if (product) {
         // Actualiza la cantidad, asegurándose de que no sea menor a 1
         const sum =  product.quantity + change;
-        console.log( product.quantity + " + " + change + " = " + (product.quantity + change));
         product.quantity = Math.max(1, sum);
         console.log("quantity: " + product.quantity);
         // Actualiza la visualización de la cantidad y el total
-        console.log("product incrementado: " +JSON.stringify(product));
-
-        updateCartTotal(product);
+        let quantityDisplay = document.getElementById(`quantity-` + productId);
+        if (quantityDisplay) {
+            quantityDisplay.textContent = product.quantity;
+        }
+        sessionStorage.setItem('cart', JSON.stringify(carts));
+        updateCartTotal();
     }
 }
 
-function updateCartTotal(product) {
+function updateCartTotal() {
     let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
-
-   carts.map(function(item){
-     if(item.id == product.id){
-       item.quantity = product.quantity;
-     }
-   });
-    console.log("carts updated: " +JSON.stringify(carts));
-
-    sessionStorage.setItem('cart', JSON.stringify(carts));
+    let total = carts.reduce((sum, item) => sum + (item.price * (1 - item.discount / 100) * item.quantity), 0);
+    let totalDisplay = document.getElementById('cart-total');
+    if (totalDisplay) {
+        totalDisplay.textContent = total.toFixed(2);
+    }
+//    let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
+//
+//   carts.map(function(item){
+//     if(item.id == product.id){
+//       item.quantity = product.quantity;
+//     }
+//   });
+//    console.log("carts updated: " +JSON.stringify(carts));
+//
+//    sessionStorage.setItem('cart', JSON.stringify(carts));
 }
 
 function removeCartItem(id) {
-    fetch('/removeCartItem', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            'id': id
-        })
-    }).then(() => {
-        location.reload();
-    });
+   // Obtener el carrito del sessionStorage
+      let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+      // Filtrar el carrito para eliminar el elemento con el id especificado
+      carts = carts.filter(item => item.id !== id);
+
+      // Actualizar el carrito en el sessionStorage
+      sessionStorage.setItem('cart', JSON.stringify(carts));
+
+      // Eliminar el elemento visualmente del DOM
+      let itemElement = document.getElementById('item-' + id);
+      if (itemElement) {
+          itemElement.remove();
+      }
+      // También puedes actualizar el total si es necesario
+     updateCartTotal();
 }

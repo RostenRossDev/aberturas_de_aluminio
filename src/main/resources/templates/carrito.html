@@ -24,9 +24,9 @@
                         $<span th:text="${item.price * (1 - item.discount / 100)}">Precio Unitario</span>
                     </span>
                 </div>
-                <div class="item-controls">
+                <div class="item-controls" th:attr="id='item-' + ${item.id}">
                     <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', -1)'">-</button>
-                    <span class="quantity-display" th:text="${item.quantity}">1</span>
+                    <span class="quantity-display" th:attr="id='quantity-' + ${item.id}"  th:text="${item.quantity}">1</span>
                     <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', 1)'">+</button>
                 </div>
                 <span class="item-total">
