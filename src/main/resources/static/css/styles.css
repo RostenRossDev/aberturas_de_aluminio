@@ -281,6 +281,7 @@ header {
 }
 
 .btn-price {
+    border: none; /* Elimina el borde del botón */
     display: inline-block;
     background-color: var(--olive-color);
     color: white;
@@ -290,6 +291,7 @@ header {
     font-weight: bold;
     font-size: 1em;
     margin-bottom: 10px;
+    outline: none; /* Elimina el contorno que aparece al hacer clic */
 }
 
 .carousel-control-prev,
