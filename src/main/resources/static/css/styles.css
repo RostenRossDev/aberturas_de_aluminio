@@ -632,7 +632,7 @@ header {
 /* Estilo para pantallas más pequeñas */
 @media (max-width: 767px) {
     #wallet_container {
-        width: 60%; /* Ajusta el tamaño del botón al 60% del contenedor */
-        margin: 0 auto; /* Margen lateral del 20% */
+        width: 80%; /* Ajusta el tamaño del botón al 60% del contenedor */
+        /*margin: 0 5%; /* Margen lateral del 20% */
     }
 }
