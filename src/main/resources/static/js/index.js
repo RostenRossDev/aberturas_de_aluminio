@@ -89,11 +89,30 @@ function addToCart(name, id, price, discount) {
     const existingItem = carts.find(item => item.id === id);
 
     if (!existingItem) {
+        Toastify({
+            text: "Item agregado al carrito",
+            duration: 3000,
+            close: true,
+            gravity: "bottom", // "top" or "bottom"
+            position: "right", // "left" or "right"
+            backgroundColor: "#4CAF50", // Green color
+            stopOnFocus: true // Prevents dismissing of toast on hover
+        }).showToast();
         carts.push({ name, id, price, discount, quantity: 1 });
         sessionStorage.setItem('cart', JSON.stringify(carts));
         console.log(JSON.stringify(cart))
         console.log(cart)
         updateCartIcon();
+    }else {
+        Toastify({
+            text: "El item ya esta en el carrito",
+            duration: 3000,
+            close: true,
+            gravity: "bottom", // "top" or "bottom"
+            position: "right", // "left" or "right"
+            backgroundColor: "#c92626", // red color
+            stopOnFocus: true // Prevents dismissing of toast on hover
+        }).showToast();
     }
 }
 
@@ -103,19 +122,21 @@ function calculateTotal() {
 
 function sendCartToServer() {
     const cartData = JSON.parse(sessionStorage.getItem('cart')) || [];
-    let cartJSON = JSON.stringify(cartData);
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '/detalle-de-Compra';
+    if(cartData.length > 0){
+        let cartJSON = JSON.stringify(cartData);
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/detalle-de-Compra';
 
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'cart';
-    input.value = cartJSON;
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'cart';
+        input.value = cartJSON;
 
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

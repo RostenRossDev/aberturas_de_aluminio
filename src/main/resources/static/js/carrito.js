@@ -39,27 +39,23 @@ function updateCartTotal() {
     if (totalDisplay) {
         totalDisplay.textContent = total.toFixed(2);
     }
-//    let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
-//
-//   carts.map(function(item){
-//     if(item.id == product.id){
-//       item.quantity = product.quantity;
-//     }
-//   });
-//    console.log("carts updated: " +JSON.stringify(carts));
-//
-//    sessionStorage.setItem('cart', JSON.stringify(carts));
 }
 
 function removeCartItem(id) {
+      id = String(id);
+
    // Obtener el carrito del sessionStorage
       let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
-
+      console.log("id: " + id)
+      console.log("datos viejos: " + carts)
       // Filtrar el carrito para eliminar el elemento con el id especificado
       carts = carts.filter(item => item.id !== id);
+      console.log("datos nuevos: " + carts)
 
       // Actualizar el carrito en el sessionStorage
       sessionStorage.setItem('cart', JSON.stringify(carts));
+      let updatedCarts = JSON.parse(sessionStorage.getItem('cart'));
+      console.log("Datos guardados en sessionStorage: " + JSON.stringify(updatedCarts));
 
       // Eliminar el elemento visualmente del DOM
       let itemElement = document.getElementById('item-' + id);
@@ -69,3 +65,23 @@ function removeCartItem(id) {
       // También puedes actualizar el total si es necesario
      updateCartTotal();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Función que verifica el carrito en sessionStorage
+    function checkCartAndRedirect() {
+        // Obtener el carrito del sessionStorage
+        let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+        // Verificar si el carrito tiene 1 o menos elementos
+        if (carts.length < 1) {
+           const form = document.createElement('form');
+               form.method = 'GET';
+               form.action = '/inicio';
+               document.body.appendChild(form);
+               form.submit();
+        }
+    }
+
+    // Llamar a la función al cargar la página
+    checkCartAndRedirect();
+});
