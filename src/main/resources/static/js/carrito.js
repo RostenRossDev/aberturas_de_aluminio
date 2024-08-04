@@ -7,8 +7,11 @@ function updateCartIcon() {
 }
 
 function updateQuantity(productId, change) {
+    console.log("productId: " + productId)
     // Encuentra el producto en el carrito
     const carts = JSON.parse(sessionStorage.getItem('cart')) || [];
+    console.log("carts: " + JSON.stringify(carts))
+
     let productIdStr = String(productId);
     let product = carts.find(item => item.id === productIdStr);
 

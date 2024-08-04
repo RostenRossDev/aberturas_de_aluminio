@@ -84,16 +84,17 @@
 let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
 
 function addToCart(name, id, price, discount) {
-    const existingItem = cart.find(item => item.id === id);
+    let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
 
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ name, id, price, discount, quantity: 1 });
+    const existingItem = carts.find(item => item.id === id);
+
+    if (!existingItem) {
+        carts.push({ name, id, price, discount, quantity: 1 });
+        sessionStorage.setItem('cart', JSON.stringify(carts));
+        console.log(JSON.stringify(cart))
+        console.log(cart)
+        updateCartIcon();
     }
-    console.log(JSON.stringify(cart))
-    console.log(cart)
-    updateCartIcon();
 }
 
 function calculateTotal() {
@@ -101,7 +102,8 @@ function calculateTotal() {
 }
 
 function sendCartToServer() {
-    const cartData = JSON.stringify(cart);
+    const cartData = JSON.parse(sessionStorage.getItem('cart')) || [];
+    let cartJSON = JSON.stringify(cartData);
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = '/detalle-de-Compra';
@@ -109,14 +111,7 @@ function sendCartToServer() {
     const input = document.createElement('input');
     input.type = 'hidden';
     input.name = 'cart';
-    input.value = cartData;
-
-
-    console.log("cart: " + cart)
-    console.log("cart: " +  JSON.stringify(cart))
-    console.log("cartData: " + cartData)
-    console.log("input: " + JSON.stringify(input))
-    console.log("input: " + input)
+    input.value = cartJSON;
 
     form.appendChild(input);
     document.body.appendChild(form);
