@@ -29,7 +29,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/inicio", "/css/**", "/js/**", "/img/**", "/WEB-INF/views/**").permitAll()
                         .requestMatchers("/h2-**")
                         .hasRole("ADMIN")
-                        .anyRequest()
+                        .requestMatchers("/detalle-de-Compra", "/addToCart", "/updateCartItem", "/removeCartItem", "/sendCart")
+                        .permitAll()
+                        .requestMatchers("/")
                         .authenticated())
                 .headers(header -> header.frameOptions(options -> options.disable()))
                 .formLogin(formLogin ->

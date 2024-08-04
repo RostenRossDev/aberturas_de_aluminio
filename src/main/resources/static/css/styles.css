@@ -4,6 +4,7 @@
     --primary-color: #3498db;
     --secondary-color: #2ecc71;
     --padding: 16px;
+    --footer-color: #a5c926;
     --actual-color: var(--primary-color);
 }
 
@@ -11,10 +12,17 @@ body{
     background-color: #f8f8f8;
 }
 
+.bg-white {
+    background-color: white;
+}
+
 .olive-color {
     color: var(--olive-color);
 }
 
+.navbar a {
+    font-weight : bold;
+}
 .rowMargin {
     margin-bottom: 20px;
 }
@@ -46,7 +54,14 @@ body{
     background-color: #a5c926;
 }
 
-
+header {
+    position: fixed; /* Fijar posición */
+    text-align: center; /* Centrar texto */
+    position: fixed; /* Fijar posición */
+    top: 0; /* En la parte superior */
+    width: 100%; /* Ancho completo */
+    z-index: 1000; /* Asegurarse de que quede sobre otros elementos */
+}
 /* Media queries para responsividad para las barras de navegacion*/
 @media (max-width: 1000px) {
     .top-bar {
@@ -112,9 +127,11 @@ body{
 
   /* Estilo de la imagen de fondo */
 .hero-image-container {
+     margin-top: 100px;
      width: 100%;
      height: 80vh; /* Altura completa de la ventana gráfica */
-     background-image: url('/img/ventanal.webp');
+     /*background-image: url('/img/ventanal.webp');*/
+     background-image: url('/img/living.webp');
      background-size: cover; /* Ajusta la imagen para cubrir el contenedor */
      background-position: center; /* Centra la imagen en el contenedor */
      background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -393,4 +410,210 @@ body{
     background: #333;
     width: 90%;
     margin: 40px auto; /* Ajusta el margen según necesites */
+}
+
+
+/ * ############################# FOOTER */
+
+.footer-container {
+    background-color: var(--footer-color);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.footer div{
+    background-color: var(--footer-color);
+}
+
+.footer-nav {
+    list-style-type: none; /* Quitar viñetas */
+    padding: 0; /* Quitar padding */
+    margin: 0; /* Quitar margen */
+}
+
+.footer-nav li {
+    display: inline; /* Mostrar elementos en línea */
+    margin: 0 15px; /* Espacio entre elementos */
+}
+
+.footer-nav a {
+    color: white; /* Color del texto */
+    text-decoration: none; /* Quitar subrayado */
+    font-weight: bold; /* Texto en negrita */
+}
+
+.footer-container p {
+    margin-top: 20px;
+    margin-left: 30px
+    font-weight: bold;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
+
+/*  ########################################   CARRITO  SECTION */
+.carrito-section{
+     margin-top: 120px;
+}
+
+.carrito-section h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.item-name {
+    width: 300px;
+    font-weight: bold;
+    flex: 1;
+}
+
+.item-price {
+    width: 20%;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.quantity-button:hover {
+    background-color: #0056b3;
+}
+
+.quantity-input {
+    width: 60px;
+    text-align: center;
+    font-size: 1em;
+}
+
+.item-total {
+    width: 40%;
+    font-size: 1.2em;
+    color: #333;
+    margin-left: 10px;
+}
+
+.quantity-display {
+    width: 25px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    border: 1px solid #ccc; /* Opcional: borde para visualización */
+    border-radius: 4px; /* Opcional: bordes redondeados */
+}
+.cart-total {
+    margin-right: 21%;
+    display: flex;
+    justify-content: flex-end; /* Alinea el total a la derecha */
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 10px;
+    border-top: 2px solid #ddd;
+}
+
+.remove-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.remove-button:hover {
+    background-color: #c82333;
+}
+
+@media (max-width:767px) {
+    .carrito-section{
+         margin-top: 150px;
+    }
+    .cart-item {
+        flex-direction: row; /* Cambia a dirección horizontal para pantallas pequeñas */
+        flex-wrap: wrap; /* Permite que los ítems se envuelvan si es necesario */
+        align-items: center; /* Alinea verticalmente en el centro */
+    }
+
+    .item-details {
+        /*flex-direction: column; /* Cambia a columna si es necesario */
+        align-items: flex-start;
+        margin-bottom: 0;
+        width: 100%; /* Usa el ancho completo disponible */
+    }
+
+    .item-name {
+        width: 80%;
+        font-size: 0.7em; /* Ajusta el tamaño de fuente */
+
+    }
+
+    .item-price {
+        font-size: 1em; /* Ajusta el tamaño de fuente */
+    }
+
+    .item-controls {
+       /* flex-direction: row; /* Alinea controles horizontalmente */
+        gap: 10px;
+        margin-left: 5%;;
+        width: auto; /* Ajusta el ancho según el contenido */
+    }
+
+    .quantity-button, .quantity-input {
+        width: auto; /* Ajusta el tamaño de los botones y el campo de entrada */
+    }
+
+    .item-total {
+        font-size: 1em; /* Ajusta el tamaño de la fuente del total */
+        margin: 0;
+        width: auto; /* Ajusta el ancho según el contenido */
+    }
+
+    .remove-button {
+        width: 20%%; /* Botón ocupa el 100% del ancho */
+    }
+
+    .cart-total {
+        font-size: 1.5em; /* Aumenta el tamaño del total general */
+        margin-top: 20px;
+        margin-right: 0%;
+        justify-content: center; /* Centra el total general horizontalmente */
+    }
 }
