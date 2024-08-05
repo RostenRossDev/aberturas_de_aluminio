@@ -31,6 +31,8 @@ public class SecurityConfig {
                         .hasRole("ADMIN")
                         .requestMatchers("/detalle-de-Compra", "/addToCart", "/updateCartItem", "/removeCartItem", "/sendCart")
                         .permitAll()
+                        .requestMatchers("/administracion-negocio")
+                        .hasRole("ADMIN")
                         .requestMatchers("/")
                         .authenticated())
                 .headers(header -> header.frameOptions(options -> options.disable()))

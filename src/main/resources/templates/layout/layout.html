@@ -61,6 +61,13 @@
 
                     <!-- Icono de carrito de compras visible en pantallas grandes -->
                     <div class="d-none d-lg-flex align-items-center">
+                        <a  sec:authorize="!isAuthenticated()" class="btn btn-light position-relative"  th:href="@{/login}" >
+                            <i class="bi bi-person-fill"></i>
+                            <span class="visually-hidden">Login</span>
+                        </a>
+                        <a  sec:authorize="hasRole('ROLE_ADMIN')"  class="btn btn-light position-relative"  th:href="@{/administracion-negocio}" >
+                            <i class="bi bi-gear"></i>
+                        </a>
                         <a class="btn btn-light position-relative"  href="#" onclick="sendCartToServer()">
                             <i class="bi bi-cart"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cartQuantity">

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Page</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/admin.js}" defer></script>
+</head>
+<body>
+<div class="container-admin">
+    <section class="filter-section">
+        <h2>Filtrar Productos</h2>
+        <form id="filterForm">
+            <div class="filter-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="filter-group">
+                <label for="price">Precio</label>
+                <input type="number" id="price" name="price">
+            </div>
+            <div class="filter-group">
+                <label for="discount">Descuento</label>
+                <input type="number" id="discount" name="discount">
+            </div>
+            <div class="filter-group">
+                <label for="tags">Tags</label>
+                <input type="text" id="tags" name="tags">
+            </div>
+            <div class="filter-group">
+                <label for="material">Material</label>
+                <select id="material" name="material">
+                    <option value="wood">Madera</option>
+                    <option value="metal">Metal</option>
+                    <option value="plastic">Plástico</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="enabled">Habilitado</label>
+                <input type="checkbox" id="enabled" name="enabled">
+            </div>
+            <button type="button" onclick="filterProducts()">Buscar</button>
+        </form>
+    </section>
+    <section class="table-section">
+        <h2>Productos</h2>
+        <button type="button" onclick="confirmChanges()">Confirmar Cambios</button>
+        <table id="productTable">
+            <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descuento</th>
+                <th>Activo</th>
+                <th>Tags</th>
+                <th>Stock</th>
+                <th>Material</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Rows will be dynamically populated -->
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>
