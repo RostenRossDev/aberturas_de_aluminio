@@ -1,6 +1,7 @@
 /* Estilo para los enlaces de navegación */
 :root {
     --olive-color: #a5c926;
+    --olive-color2: #9ecb00;
     --primary-color: #3498db;
     --secondary-color: #2ecc71;
     --padding: 16px;
@@ -642,13 +643,30 @@ header {
 .container-admin {
     display: flex;
     flex-wrap: wrap;
+    font-family: roboto;
+    margin-top: 100px;
+    background-color:  #a5c926;
+    padding-top: 20px;
+}
+
+.container-admin h1 {
+    width: 100%;
+    text-align: center; /* Centrar texto */
+}
+
+.container-admin button {
+    margin-bottom: 20px;
 }
 
 .filter-section {
     width: 20%;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: var(--olive-color);
     box-sizing: border-box;
+}
+
+.filter-section form {
+    background-color: var(--olive-color2);
 }
 
 .table-section {
@@ -656,6 +674,7 @@ header {
     flex: 1 1 75%;
     padding: 20px;
     box-sizing: border-box;
+    background: var(--olive-color2);
 }
 
 .filter-group {
@@ -681,18 +700,19 @@ header {
 
 .table-section table th,
 .table-section table td {
-    border: 1px solid #dee2e6;
     padding: 8px;
     text-align: left;
 }
 
 @media (max-width: 1000px) {
     .container-admin {
-        flex-direction: column;
+        flex-direction: row;
+        margin-top: 100px;
     }
 
     .filter-section {
-        flex: 1 1 100%;
+        display: flex;
+        width: 100%;
     }
 
     .table-section {
@@ -744,4 +764,55 @@ header {
     .filter-group {
         margin: 20px;
     }
+}
+
+/* tag filter */
+.tag-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid #ced4da;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e2e6ea;
+    border-radius: 3px;
+    padding: 3px 8px;
+    margin: 2px;
+    font-size: 14px;
+}
+
+.tag span {
+    margin-right: 5px;
+}
+
+.tag .remove-tag {
+    cursor: pointer;
+    padding: 0 5px;
+}
+productTable
+.tag-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+
+}
+
+.tag-input-container:focus-within {
+    border-color: #80bdff;
+}
+
+/*  ####################### botones de edit*/
+.edit{
+    border: none;
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: bold;
+    outline: none;
+    text-decoration: none;
 }

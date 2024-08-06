@@ -79,3 +79,71 @@ function loadProductsFromSessionStorage() {
         updateProductTable(products);
     }
 }
+
+
+/* ############################################################## tag filter */
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const tagInput = document.querySelector('.tag-input');
+    const tagContainer = document.querySelector('.tag-input-container');
+
+    // Cargar tags desde sessionStorage
+    const storedTags = JSON.parse(sessionStorage.getItem('tags')) || [];
+    storedTags.forEach(tag => addTag(tag));
+
+    tagInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && tagInput.value.trim() !== '') {
+            event.preventDefault();
+            addTag(tagInput.value.trim());
+            tagInput.value = '';
+        }
+    });
+
+    function addTag(tag) {
+        const tagElement = document.createElement('div');
+        tagElement.classList.add('tag');
+        tagElement.innerHTML = `<span>${tag}</span><span class="remove-tag" onclick="removeTag(this)">x</span>`;
+        tagContainer.insertBefore(tagElement, tagInput);
+
+        // Guardar tags en sessionStorage
+        const tags = getTags();
+        tags.push(tag);
+        sessionStorage.setItem('tags', JSON.stringify(tags));
+    }
+
+    function removeTag(element) {
+        const tagElement = element.parentNode;
+        const tagText = tagElement.querySelector('span').innerText;
+
+        tagElement.remove();
+
+        // Actualizar tags en sessionStorage
+        const tags = getTags().filter(tag => tag !== tagText);
+        sessionStorage.setItem('tags', JSON.stringify(tags));
+    }
+
+    function getTags() {
+        return JSON.parse(sessionStorage.getItem('tags')) || [];
+    }
+});
+
+function removeTag(element) {
+    const tagElement = element.parentNode;
+    const tagText = tagElement.querySelector('span').innerText;
+
+    tagElement.remove();
+
+    // Actualizar tags en sessionStorage
+    const tags = JSON.parse(sessionStorage.getItem('tags')) || [];
+    const newTags = tags.filter(tag => tag !== tagText);
+    sessionStorage.setItem('tags', JSON.stringify(newTags));
+}
+
+
+/*################ modal */
+const myModal = document.getElementById('exampleModal')
+const myInput = document.getElementById('exampleModalLabel')
+
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})
