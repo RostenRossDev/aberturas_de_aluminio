@@ -81,3 +81,100 @@ function updateCartIcon(){
 document.addEventListener('DOMContentLoaded', (event) => {
     updateCartIcon();
 });
+
+
+// ############################# modal idex
+function changeSecundaryText(){
+    Swal.fire({
+        title: 'Nuevo texto para el sitio Web',
+        input: 'text',
+        inputLabel: 'Texto del Sitio Web',
+        inputPlaceholder: 'Ingrese un nuevo texto para el sitio web',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return '¡Necesitas ingresar un texto!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Guardado', 'Texto del sitio web guardado', 'success');
+        }
+    });
+}
+
+function changeTitleText(){
+    Swal.fire({
+        title: 'Nuevo titulo para el sitio Web',
+        input: 'text',
+        inputLabel: 'Titulo del Sitio Web',
+        inputPlaceholder: 'Ingrese un nuevo titulo para el sitio web',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return '¡Necesitas ingresar un texto!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Guardado', 'Texto del sitio web guardado', 'success');
+        }
+    });
+}
+
+function changeProductBotonText(){
+    Swal.fire({
+        title: 'Nuevo texto para el boton de productos',
+        input: 'text',
+        inputLabel: 'Texto para el boton de productos',
+        inputPlaceholder: 'Ingrese un nuevo texto para el boton',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return '¡Necesitas ingresar un texto!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Guardado', 'Texto del boton productos', 'success');
+        }
+    });
+}
+
+function changeSaleTitle(){
+    Swal.fire({
+        title: 'Nuevo texto para la sección de ofertas',
+        input: 'text',
+        inputLabel: 'Sección de ofertas',
+        inputPlaceholder: 'Ingrese un nuevo texto para las ofertas',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return '¡Necesitas ingresar un texto!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Guardado', 'Texto de ofertas', 'success');
+        }
+    });
+}
+
+function changeProductsTitle(){
+    Swal.fire({
+        title: 'Nuevo texto para la sección productos',
+        input: 'text',
+        inputLabel: 'Sección de productos',
+        inputPlaceholder: 'Ingrese un nuevo texto para los productos',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return '¡Necesitas ingresar un texto!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Guardado', 'Texto de productos', 'success');
+        }
+    });
+}

@@ -21,9 +21,19 @@
             <div class="hero-image-container">
                 <!-- Recuadro con el texto y el botón -->
                 <div class="content-box " id="contentBox">
-                    <p class="small-text">Sorprendete en la tienta</p>
-                    <h1 class="large-text">Los mejores precios en muebles</h1>
-                    <a href="#" class="btn-custom">Ver Catálogo</a>
+                    <p class="small-text">Sorprendete en la tienta
+                        <button  sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary edit" onclick="changeSecundaryText()">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                    </p>
+                    <h1 class="large-text">Los mejores precios en muebles <button  sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary edit" onclick="changeTitleText()">
+                        <i class="bi bi-pencil-square"></i>
+                    </button></h1>
+                    <a href="#" class="btn-custom">Ver Catálogo
+                        <button  sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary edit" onclick="changeProductBotonText()">
+                        <i class="bi bi-pencil-square"></i>
+                        </button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -32,7 +42,11 @@
 <!-- ##################################### CARRUSEL DE OFERTAS ######################################################################-->
         <section class="carousel-section">
             <div class="carousel-title">
-                Ofertas!!
+                <p sec:authorize="!isAuthenticated()">Ofertas!!</p>
+                <button  sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary edit" onclick="changeProductsTitle()" style="align-self:start">
+                    Ofertas!!
+                    <i class="bi bi-pencil-square"></i>
+                </button>
                 <a class="olive-color" href="#">Ver Mas <i class="bi-arrow-right-circle olive-color"></i></a>
             </div>
             <div id="carousel-lg-control" class="carousel slide d-none d-md-block" data-bs-ride="carousel">
@@ -311,7 +325,11 @@
 
         <section class="carousel-section">
             <div class="carousel-title">
-                Muebles para el Hogar
+                <p sec:authorize="!isAuthenticated()">Muebles para el Hogar</p>
+                <button  sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary edit" onclick="changeProductsTitle()" style="align-self:start">
+                    Muebles para el Hogar
+                    <i class="bi bi-pencil-square"></i>
+                </button>
                 <a class="olive-color" href="#">Ver Mas <i class="bi-arrow-right-circle olive-color"></i></a>
             </div>
             <div id="products-lg-control" class="carousel slide d-none d-md-block" data-bs-ride="carousel">
@@ -559,112 +577,10 @@
 
     </main>
 
-    <!-- Modal Número de Contacto -->
-    <div class="modal fade" id="contactNumberModal" tabindex="-1" aria-labelledby="contactNumberModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contactNumberModalLabel">Número de Contacto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="contactNumber">Número de Contacto</label>
-                        <input type="text" class="form-control" id="contactNumber" placeholder="Ingresa el número de contacto">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Email de Contacto -->
-    <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="emailModalLabel">Email de Contacto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="contactEmail">Email de Contacto</label>
-                        <input type="email" class="form-control" id="contactEmail" placeholder="Ingresa el email de contacto">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Redes Sociales -->
-    <div class="modal fade" id="socialMediaModal" tabindex="-1" aria-labelledby="socialMediaModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="socialMediaModalLabel">Redes Sociales</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="facebook">Facebook</label>
-                        <input type="text" class="form-control" id="facebook" placeholder="Ingresa el Facebook">
-                    </div>
-                    <div class="form-group">
-                        <label for="twitter">Twitter</label>
-                        <input type="text" class="form-control" id="twitter" placeholder="Ingresa el Twitter">
-                    </div>
-                    <div class="form-group">
-                        <label for="instagram">Instagram</label>
-                        <input type="text" class="form-control" id="instagram" placeholder="Ingresa el Instagram">
-                    </div>
-                    <div class="form-group">
-                        <label for="youtube">YouTube</label>
-                        <input type="text" class="form-control" id="youtube" placeholder="Ingresa el YouTube">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Nombre del Comercio -->
-    <div class="modal fade" id="storeNameModal" tabindex="-1" aria-labelledby="storeNameModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="storeNameModalLabel">Nombre del Comercio</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="storeName">Nombre del Comercio</label>
-                        <input type="text" class="form-control" id="storeName" placeholder="Ingresa el nombre del comercio">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer th:insert="~{layout/layout :: footer}"></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

@@ -139,11 +139,104 @@ function removeTag(element) {
     sessionStorage.setItem('tags', JSON.stringify(newTags));
 }
 
+/*################## modales */
 
-/*################ modal */
-const myModal = document.getElementById('exampleModal')
-const myInput = document.getElementById('exampleModalLabel')
+function changeNumber(){
+    Swal.fire({
+        title: 'Nuevo Numero de Contacto',
+        input: 'text',
+        inputLabel: 'Numero con caracteristica sin el 15',
+        inputPlaceholder: 'Ingrese un nuevo numero',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return '¡Necesitas ingresar un numer!'
+            }
+            if (!/^\d+$/.test(value)) {
+                return '¡Por favor, ingresa solo números!';
+            }
+            if (!/^\d{7}$/.test(value)) {
+                return '¡Por favor, ingresa un número de 7 dígitos!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Guardado', 'Número de contacto guardado', 'success');
+        }
+    })
+}
 
-myModal.addEventListener('shown.bs.modal', () => {
-  myInput.focus()
-})
+
+
+function changeEmail(){
+Swal.fire({
+    title: 'Nuevo Email de Contacto',
+    input: 'email',
+    inputLabel: 'Email de Contacto',
+    inputPlaceholder: 'Ingrese un nuevo email',
+    showCancelButton: true,
+    inputValidator: (value) => {
+        if (!value) {
+            return '¡Necesitas ingresar un email!';
+        }
+    }
+}).then((result) => {
+    if (result.isConfirmed) {
+        Swal.fire('Guardado', 'Email de contacto guardado', 'success');
+    }
+});
+}
+
+function changeSiteName(){
+    Swal.fire({
+        title: 'Nuevo Nombre del Sitio Web',
+        input: 'text',
+        inputLabel: 'Nombre del Sitio Web',
+        inputPlaceholder: 'Ingrese un nuevo nombre para el sitio web',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return '¡Necesitas ingresar un nombre!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Guardado', 'Nombre del sitio web guardado', 'success');
+        }
+    });
+}
+
+function changeSocialLinks(){
+     Swal.fire({
+        title: 'Redes Sociales',
+        html:
+            '<input id="swal-facebook" class="swal2-input" placeholder="URL de Facebook">' +
+            '<input id="swal-twitter" class="swal2-input" placeholder="URL de Twitter">' +
+            '<input id="swal-instagram" class="swal2-input" placeholder="URL de Instagram">' +
+            '<input id="swal-youtube" class="swal2-input" placeholder="URL de YouTube">',
+        showCancelButton: true,
+        focusConfirm: false,
+        preConfirm: () => {
+            const facebook = document.getElementById('swal-facebook').value;
+            const twitter = document.getElementById('swal-twitter').value;
+            const instagram = document.getElementById('swal-instagram').value;
+            const youtube = document.getElementById('swal-youtube').value;
+
+            if (!facebook || !twitter || !instagram || !youtube) {
+                Swal.showValidationMessage('¡Todos los campos son obligatorios!');
+                return false;
+            }
+
+            return {
+                facebook,
+                twitter,
+                instagram,
+                youtube
+            };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Guardado', 'Redes sociales guardadas', 'success');
+        }
+    });
+}
