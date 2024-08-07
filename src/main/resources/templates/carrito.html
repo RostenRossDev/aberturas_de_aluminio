@@ -29,11 +29,20 @@
                     <span class="quantity-display" th:attr="id='quantity-' + ${item.id}" >1</span>
                     <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', 1)'">+</button>
                 </div>
-                <span class="item-total">
+                <span class="item-total" th:attr="id='item-total-' + ${item.id}">
                     Total: $<span th:text="${item.price * (1 - item.discount / 100) * item.quantity}">0.00</span>
                 </span>
                 <button class="remove-button" th:attr="onclick='removeCartItem(' + ${item.id} + ')'"><i class="bi bi-trash3-fill"></i></button>
             </div>
+        </div>
+        <div class="cart-deliver">
+            <h3>Delivery</h3>
+            <p>Seleccione el metodo de retiro que desee</p>
+            <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+            <label class="btn btn-outline-success" for="success-outlined">Retiro en local</label>
+
+            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+            <label class="btn btn-outline-danger" for="danger-outlined">Envio a domicilio</label>
         </div>
         <div class="cart-total">
             Total: $<span id="cart-total" th:text="${total}">0</span>

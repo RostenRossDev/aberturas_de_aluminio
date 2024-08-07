@@ -29,6 +29,7 @@ function updateQuantity(productId, change) {
         }
         sessionStorage.setItem('cart', JSON.stringify(carts));
         updateCartTotal();
+        updateItemCartTotal(productId);
     }
 }
 
@@ -57,6 +58,20 @@ function updateCartTotal() {
     let totalDisplay = document.getElementById('cart-total');
     if (totalDisplay) {
         totalDisplay.textContent = total.toFixed(2);
+        updateCartIcon();
+    }
+}
+
+function updateItemCartTotal(itemId) {
+    let carts = JSON.parse(sessionStorage.getItem('cart')) || [];
+    console.log(JSON.stringify(carts))
+    let itemIdStr = String(itemId).trim();
+    let filteredItems = carts.filter(item => item.id === itemIdStr);
+    console.log(JSON.stringify(filteredItems))
+    let total = filteredItems.reduce((sum, item) => sum + (item.price * (1 - item.discount / 100) * item.quantity), 0);
+    let totalDisplay = document.getElementById('item-total-' + itemId);
+    if (totalDisplay) {
+        totalDisplay.textContent = "Total: " + total.toFixed(2);
         updateCartIcon();
     }
 }
@@ -123,7 +138,13 @@ function updateCartIcon(){
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("actualizando el numero " )
     updateCartIcon();
     updateCartTotal();
     chargeQuantity();
+    const cartData = JSON.parse(sessionStorage.getItem('cart')) || [];
+    cartData.forEach(item => {
+        console.log("actualizando el numero " + item.id + ", " + item.quantity)
+        updateItemCartTotal(item.id)
+    })
 });

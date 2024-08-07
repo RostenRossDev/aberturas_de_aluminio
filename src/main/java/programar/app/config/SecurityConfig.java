@@ -33,6 +33,8 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers("/administracion-negocio")
                         .hasRole("ADMIN")
+                        .requestMatchers("/productos")
+                        .permitAll()
                         .requestMatchers("/")
                         .authenticated())
                 .headers(header -> header.frameOptions(options -> options.disable()))
