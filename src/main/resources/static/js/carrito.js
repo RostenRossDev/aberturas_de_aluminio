@@ -162,20 +162,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
             this.classList.add('hidden');
             document.getElementById("step3").classList.remove('hidden');
             document.getElementById("step2").classList.add('hidden');
+            document.getElementById("delivery-details").classList.add('hidden');
+            document.getElementById("pickup-details").classList.add('hidden');
         });
 
 
 
 function showPickupDetails() {
-     let pickupDetails = document.getElementById("pickup-details");
-     for (let child of pickupDetails.children) {
-         child.style.display = 'block';
-     }
+
+    document.getElementById("pickup-details").classList.remove('hidden');
     document.getElementById("delivery-details").classList.add('hidden');
 }
 
 function showDeliveryDetails() {
-    document.getElementById("pickup-details").classList.remove('envio');
+    document.getElementById("pickup-details").classList.add('hidden');
     document.getElementById("delivery-details").classList.remove('hidden');
     // Add logic to calculate and add the delivery fee to the total amount
 }
