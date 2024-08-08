@@ -148,3 +148,78 @@ document.addEventListener('DOMContentLoaded', (event) => {
         updateItemCartTotal(item.id)
     })
 });
+
+/* #################################### Pago de carrito */
+ document.getElementById("btnStep1").addEventListener("click", function() {
+            this.classList.add('hidden');
+            document.getElementById("btnStep2").classList.remove('hidden');
+            document.getElementById("step2").classList.remove('hidden');
+            document.getElementById("step1").classList.add('hidden');
+
+        });
+
+        document.getElementById("btnStep2").addEventListener("click", function() {
+            this.classList.add('hidden');
+            document.getElementById("step3").classList.remove('hidden');
+            document.getElementById("step2").classList.add('hidden');
+        });
+
+
+
+function showPickupDetails() {
+     let pickupDetails = document.getElementById("pickup-details");
+     for (let child of pickupDetails.children) {
+         child.style.display = 'block';
+     }
+    document.getElementById("delivery-details").classList.add('hidden');
+}
+
+function showDeliveryDetails() {
+    document.getElementById("pickup-details").classList.remove('envio');
+    document.getElementById("delivery-details").classList.remove('hidden');
+    // Add logic to calculate and add the delivery fee to the total amount
+}
+
+document.getElementById("local").addEventListener("change", function() {
+    if (this.checked) {
+       showPickupDetails();
+    }
+});
+
+document.getElementById("casa").addEventListener("change", function() {
+    if (this.checked) {
+       showDeliveryDetails();
+    }
+});
+
+/* ################### Mapa de google para el envio */
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -27.451, lng: -58.986},
+        zoom: 13,
+        restriction: {
+            latLngBounds: {
+                north: -27.4,
+                south: -27.5,
+                east: -58.95,
+                west: -59.02
+            },
+            strictBounds: true
+        }
+    });
+    var marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        position: {lat: -27.451, lng: -58.986}
+    });
+
+    marker.addListener('position_changed', function() {
+        var pos = marker.getPosition();
+        console.log('Selected location: ', pos.lat(), pos.lng());
+    });
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    initMap();
+});
+

@@ -13,6 +13,17 @@ body{
     background-color: #f8f8f8;
 }
 
+.hidden {
+    display: none;
+}
+
+.display-no {
+    display: none;
+}
+.text-center {
+     justify-content: center;
+}
+
 .bg-white {
     background-color: white;
 }
@@ -424,6 +435,7 @@ header {
     padding-right: 20px;
 }
 .footer div{
+    margin-top: 10%;
     background-color: var(--footer-color);
 }
 
@@ -481,6 +493,7 @@ header {
     border-radius: 8px;
     background-color: #f9f9f9;
 }
+
 
 .item-details {
     width: 40%;
@@ -625,9 +638,23 @@ header {
 
 /* ######################################################## BOTON MERCADO PAGO*/
 
-#wallet_container {
+.btn-cart {
     width: 20%; /* Ajusta el ancho al contenido del botón */
     margin: 0 auto; /* Centra el contenedor horizontalmente */
+    justify-content: center;
+}
+
+.btn-cart-step {
+    padding: 10px 20px; /* Ajusta el padding para el tamaño del botón */
+    font-size: 1.5em; /* Ajusta el tamaño de la fuente */
+    background-color: #007bff; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Elimina el borde por defecto */
+    border-radius: 4px; /* Añade bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    width: 40%; /* Ajusta el ancho al contenido del botón */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    justify-content: center;
 }
 
 /* Estilo para pantallas más pequeñas */
@@ -815,4 +842,42 @@ productTable
     font-weight: bold;
     outline: none;
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .btn-cart-step {
+        width: 40%;
+    }
+}
+
+@media (max-width: 500px) {
+    .btn-cart-step {
+        width: 50%;
+    }
+}
+
+@media (max-width: 380px) {
+    .btn-cart-step {
+        width: 80%;
+    }
+
+    .carrito-section {
+        margin-top: 50%;
+    }
+}
+
+/*################################### botones de metodo de envio */
+
+.btn-envio{
+    width: 100%;
+}
+
+.envio {
+     display: flex;
+     justify-content: center;
+}
+.envio card{
+    flex-direction: row;
+    align-content: center;
+    width: 100%;
 }
