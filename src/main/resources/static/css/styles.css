@@ -17,6 +17,18 @@ body{
     display: none;
 }
 
+.checkout-step {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.checkout-step.active {
+    opacity: 1;
+    transform: translateX(0);
+    display: flex; /* O display: flex, según necesites */
+}
+
 .display-no {
     display: none;
 }
@@ -422,8 +434,8 @@ header {
     border: 0;
     height: 1px;
     background: #333;
-    width: 90%;
-    margin: 40px auto; /* Ajusta el margen según necesites */
+    width: 100%;
+    margin: 5px auto; /* Ajusta el margen según necesites */
 }
 
 
@@ -470,6 +482,12 @@ header {
 /*  ########################################   CARRITO  SECTION */
 .carrito-section{
      margin-top: 120px;
+     width: 64%;
+}
+
+.total-section {
+    margin-top: 16%;
+    width: 33%;
 }
 
 .carrito-section h1 {
@@ -477,6 +495,9 @@ header {
     margin-bottom: 20px;
 }
 
+.cartQuantity-number{
+    margin-top: 12px;
+}
 
 #cart-items {
     display: flex;
@@ -496,14 +517,14 @@ header {
 
 
 .item-details {
-    width: 40%;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
 .item-name {
-    width: 300px;
+    width: 100%;
     font-weight: bold;
     flex: 1;
 }
@@ -521,17 +542,14 @@ header {
 }
 
 .quantity-button {
-    background-color: #007bff;
-    color: white;
+    background-color: transparent;
+    decoration: none;
+    color: black;
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1.2em;
-}
-
-.quantity-button:hover {
-    background-color: #0056b3;
 }
 
 .quantity-input {
@@ -548,11 +566,11 @@ header {
 }
 
 .quantity-display {
-    width: 25px;
+    font-size: 1em;
+    width: 40px;
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
-    border: 1px solid #ccc; /* Opcional: borde para visualización */
     border-radius: 4px; /* Opcional: bordes redondeados */
 }
 .cart-total {
@@ -562,7 +580,6 @@ header {
     font-size: 1.5em;
     font-weight: bold;
     padding: 10px;
-    border-top: 2px solid #ddd;
 }
 
 .remove-button {
@@ -578,6 +595,7 @@ header {
 .remove-button:hover {
     background-color: #c82333;
 }
+
 
 @media (max-width:767px) {
     .carrito-section{
@@ -607,13 +625,17 @@ header {
     }
 
     .item-controls {
-       /* flex-direction: row; /* Alinea controles horizontalmente */
         gap: 10px;
         margin-left: 5%;;
         width: auto; /* Ajusta el ancho según el contenido */
     }
 
-    .quantity-button, .quantity-input {
+    .item-quantity {
+        display: flex;
+        /*border: 1px solid black;*/
+    }
+
+   .quantity-input {
         width: auto; /* Ajusta el tamaño de los botones y el campo de entrada */
     }
 

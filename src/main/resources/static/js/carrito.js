@@ -151,20 +151,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 /* #################################### Pago de carrito */
  document.getElementById("btnStep1").addEventListener("click", function() {
-            this.classList.add('hidden');
-            document.getElementById("btnStep2").classList.remove('hidden');
-            document.getElementById("step2").classList.remove('hidden');
-            document.getElementById("step1").classList.add('hidden');
+//    this.classList.add('hidden');
+//    document.getElementById("btnStep2").classList.remove('hidden');
+//    document.getElementById("step2").classList.remove('hidden');
+//    document.getElementById("step1").classList.add('hidden');
+    showStep("step2", "step1");
 
-        });
+});
 
-        document.getElementById("btnStep2").addEventListener("click", function() {
-            this.classList.add('hidden');
-            document.getElementById("step3").classList.remove('hidden');
-            document.getElementById("step2").classList.add('hidden');
-            document.getElementById("delivery-details").classList.add('hidden');
-            document.getElementById("pickup-details").classList.add('hidden');
-        });
+document.getElementById("btnStep2").addEventListener("click", function() {
+//    this.classList.add('hidden');
+//    document.getElementById("step3").classList.remove('hidden');
+//    document.getElementById("step2").classList.add('hidden');
+//    document.getElementById("delivery-details").classList.add('hidden');
+//    document.getElementById("pickup-details").classList.add('hidden');
+    showStep("step3", "step2");
+});
 
 
 
@@ -179,6 +181,52 @@ function showDeliveryDetails() {
     document.getElementById("delivery-details").classList.remove('hidden');
     // Add logic to calculate and add the delivery fee to the total amount
 }
+
+function showStep(stepToShow, currentStep, currentButon, buttonToShow) {
+  console.log("stepToShow:", stepToShow, "currentStep:", currentStep);
+
+    // Validar si los elementos existen
+    let currentStepElement = document.getElementById(currentStep);
+    let stepToShowElement = document.getElementById(stepToShow);
+    let currentButonElement = document.getElementById(currentButon);
+    let buttonToShowElement = document.getElementById(buttonToShow);
+    if (!currentStepElement || !stepToShowElement || !currentButonElement || !buttonToShowElement) {
+        console.error("Uno de los pasos no existe en el DOM:", currentStep, stepToShow);
+        return;
+    }
+
+    console.log("stepToShow:", stepToShow, "currentStep:", currentStep);
+    if(stepToShow == "step2"){
+        let pickupDetailElement = document.getElementById("pickup-details");
+        pickupDetailElement.classList.remove('hidden');
+    }else if(stepToShow == "step3"){
+        let pickupDetailElement = document.getElementById("pickup-details");
+        let deliveryDetailsElement = document.getElementById("delivery-details");
+        pickupDetailElement.classList.add('hidden');
+        deliveryDetailsElement.classList.add('hidden');
+    }
+    // Ocultar la sección actual
+    currentStepElement.classList.remove('active');
+    currentStepElement.classList.add('hidden');
+    currentButonElement.classList.add('hidden');
+    // Mostrar la siguiente sección
+    stepToShowElement.classList.remove('hidden');
+    buttonToShowElement.classList.remove('hidden');
+
+    // Usar un pequeño retraso para permitir que el navegador procese la visibilidad antes de aplicar la transición
+    setTimeout(() => {
+        stepToShowElement.classList.add('active');
+    }, 10);
+}
+
+document.getElementById("btnStep1").addEventListener("click", function() {
+    showStep("step2", "step1", "btnStep1", "btnStep2");
+});
+
+// Evento para el botón de paso 2
+document.getElementById("btnStep2").addEventListener("click", function() {
+    showStep("step3", "step2", "btnStep2", "wallet_container");
+});
 
 document.getElementById("local").addEventListener("change", function() {
     if (this.checked) {

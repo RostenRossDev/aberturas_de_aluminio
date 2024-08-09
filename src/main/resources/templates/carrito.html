@@ -13,142 +13,155 @@
 </head>
 <body>
     <header th:insert="~{layout/layout :: header}"></header>
-    <section class="carrito-section">
-        <div id="step1" class="checkout-step">
-            <h2 class="text-center">Paso 1/3: Detalles del carrito</h2>
-            <div id="cart-details">
-                <div id="cart-items">
-                    <div th:each="item : ${cartItems}" class="cart-item" th:attr="id='item-' + ${item.id}">
-                        <div class="item-details">
-                            <span class="item-name" th:text="${item.name}">Nombre del Producto</span>
-                            <span class="item-price">
-                                $<span th:text="${item.price * (1 - item.discount / 100)}">Precio Unitario</span>
-                            </span>
-                        </div>
-                        <div class="item-controls">
-                            <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', -1)'">-</button>
-                            <span class="quantity-display" th:attr="id='quantity-' + ${item.id}" >1</span>
-                            <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', 1)'">+</button>
-                        </div>
-                        <span class="item-total" th:attr="id='item-total-' + ${item.id}">
-                            Total: $<span th:text="${item.price * (1 - item.discount / 100) * item.quantity}">0.00</span>
-                        </span>
-                        <button class="remove-button" th:attr="onclick='removeCartItem(' + ${item.id} + ')'"><i class="bi bi-trash3-fill"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="cart-total">
-                Total: $<span id="cart-total" th:text="${total}">0</span>
-            </div>
-        </div>
-
-        <div id="step2" class="checkout-step hidden">
-            <h2 class="text-center">Paso 2/3: Método de entrega</h2>
-            <div class="envio">
-                <div class="mx-5">
-                    <input type="radio" class="btn-check" name="options-outlined" id="local" autocomplete="off">
-                    <label class="btn btn-outline-success btn-envio" for="local">Retirar en Local</label>
-                </div>
-                <div class="mx-5">
-                    <input type="radio" class="btn-check" name="options-outlined" id="casa" autocomplete="off">
-                    <label class="btn btn-outline-success btn-envio" for="casa">Enviar a Domicilio</label>
-                </div>
-                </div>
-        </div>
-
-        <div id="pickup-details" class="hidden">
-            <div class="envio">
-                <div class="card" style="width: 50rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Retiro en Local</h5>
-                        <hr class="custom-hr">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Datos del local</h6>
-                        <p class="card-text">Dirección: Calle Falsa 123</p>
-                        <hr class="custom-hr">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Datos de contacto</h6>
-                        <p class="card-text">Teléfono de contacto: 123456789</p>
-                        <p class="card-text">Email de contacto: contacto@tienda.com</p>
-                        <hr class="custom-hr">
-                        <p class="card-text"><small class="text-body-secondary">Recuerde que ante cualquier duda puede comunicarse con nostros.</small></p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="delivery-details" class="hidden">
-            <div class="envio">
-                <div class="card" style="width: 50rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Envio a Domicilio</h5>
-                        <hr class="custom-hr">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Datos para el envio</h6>
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputNombre">Nombre</label>
-                                    <input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+    <main class="row" style="width: 100%;justify-content: center;padding: 1%;" >
+        <section class="carrito-section">
+            <div id="step1" class="active">
+                <h2 class="text-center">Detalles del carrito</h2>
+                <div id="cart-details">
+                    <div id="cart-items">
+                        <div th:each="item : ${cartItems}" th:attr="id='item-' + ${item.id}" class="item">
+                            <div class="item-details">
+                                <span style="color: #17183b;" class="item-name" th:text="${item.name}">Nombre del Producto</span>
+                            </div>
+                            <div class="item-controls">
+                                <div class="me-auto" style="padding:15px">
+                                    <img th:src="@{/img/libreria3.webp}" width="73px" height="auto">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputApellido">Apellido</label>
-                                    <input type="text" class="form-control" id="inputApellido" placeholder="Apellido">
+                                <div class="me-auto">
+                                    <div style="color: #252b42;font-weight: bold;margin-bottom:5%; font-size:0.8rem">Precio unitario</div>
+                                    <span class="item-price">
+                                        $<span th:text="${item.price * (1 - item.discount / 100)}">Precio Unitario</span>
+                                     </span>
+                                </div>
+
+                                <div class="me-auto">
+                                    <div style="color: #252b42;font-weight: bold; padding-top:10%; font-size:0.8rem">Cantidad</div>
+                                    <div style="display: flex;  border: 1px solid #ccc; padding: 1px; border-radius: 5px;">
+                                        <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', -1)'"><</button>
+                                        <span class="quantity-display" th:attr="id='quantity-' + ${item.id}" >1</span>
+                                        <button class="quantity-button"  th:attr="onclick='updateQuantity(' + ${item.id} + ', 1)'">></button>
+                                    </div>
+                                </div>
+
+                                <div class="me-auto">
+                                    <div style="color: #252b42;font-weight: bold;margin-bottom:5%; font-size:0.8rem">Subtotal</div>
+                                    <span class="item-total" th:attr="id='item-total-' + ${item.id}">
+                                        Total: $<span th:text="${item.price * (1 - item.discount / 100) * item.quantity}">0.00</span>
+                                    </span>
+                                </div>
+                                <div class="me-auto">
+                                    <button class="remove-button" th:attr="onclick='removeCartItem(' + ${item.id} + ')'"><i class="bi bi-trash3-fill"></i></button>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputEmail">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="inputEmail" placeholder="correo@ejemplo.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputTelefono">Teléfono</label>
-                                <input type="tel" class="form-control" id="inputTelefono" placeholder="(123) 456-7890">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputDireccion">Dirección</label>
-                                <input type="text" class="form-control" id="inputDireccion" placeholder="Calle Falsa 123">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                        </form>
-                        <hr class="custom-hr">
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Ubicación en el Mapa</h6>
-
-                        <div id="map"></div> <!-- Add Google Maps integration here -->
-                        <p class="card-text"><small class="text-body-secondary">Recuerde que ante cualquier duda puede comunicarse con nostros en <a th:href="@{/contacto}">contacto</a>.</small></p>
+                            <hr class="custom-hr">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="step3" class="hidden">
-            <h2 class="text-center">Paso 3/3: Revisión y Pago</h2>
-            <div id="review-details">
-               <p>Loren insupLoren insupLoren insup Loren insupLoren insupLoren insupLoren insupvLoren insupLoren insupLoren insup Loren insupLoren insup Loren insup</p>
+            <div id="step2" class="checkout-step hidden">
+                <h2 class="text-center">Paso 2/3: Método de entrega</h2>
+                <div class="envio">
+                    <div class="mx-5">
+                        <input type="radio" class="btn-check" name="options-outlined" id="local" autocomplete="off" checked>
+                        <label class="btn btn-outline-success btn-envio" for="local">Retirar en Local</label>
+                    </div>
+                    <div class="mx-5">
+                        <input type="radio" class="btn-check" name="options-outlined" id="casa" autocomplete="off">
+                        <label class="btn btn-outline-success btn-envio" for="casa">Enviar a Domicilio</label>
+                    </div>
+                    </div>
             </div>
-            <div class="btn-cart" id="wallet_container"></div>
-        </div>
-<!--        <h1>Detalle de la compra</h1>-->
-<!--        <div class="cart-deliver">-->
-<!--            <h3>Delivery</h3>-->
-<!--            <p>Seleccione el metodo de retiro que desee</p>-->
-<!--            <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>-->
-<!--            <label class="btn btn-outline-success" for="success-outlined">Retiro en local</label>-->
 
-<!--            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">-->
-<!--            <label class="btn btn-outline-danger" for="danger-outlined">Envio a domicilio</label>-->
-<!--        </div>-->
+            <div id="pickup-details" class="hidden">
+                <div class="envio">
+                    <div class="card" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Retiro en Local</h5>
+                            <hr class="custom-hr">
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Datos del local</h6>
+                            <p class="card-text">Dirección: Calle Falsa 123</p>
+                            <hr class="custom-hr">
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Datos de contacto</h6>
+                            <p class="card-text">Teléfono de contacto: 123456789</p>
+                            <p class="card-text">Email de contacto: contacto@tienda.com</p>
+                            <hr class="custom-hr">
+                            <p class="card-text"><small class="text-body-secondary">Recuerde que ante cualquier duda puede comunicarse con nostros.</small></p>
 
-<!--        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" onclick="MP()">-->
-<!--            Comprar-->
-<!--        </button>-->
-    </section>
-    <hr class="custom-hr">
-    <section>
-        <div style="display:flex;">
-            <button id="btnStep1" class="btn-cart-step" onclick="showStep(2)">Continuar</button>
-        </div>
-        <div  style="display:flex;">
-            <button id="btnStep2" class="btn-cart-step hidden" onclick="showStep(3)">Continuar</button>
-        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="delivery-details" class="hidden">
+                <div class="envio">
+                    <div class="card" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Envio a Domicilio</h5>
+                            <hr class="custom-hr">
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Datos para el envio</h6>
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputNombre">Nombre</label>
+                                        <input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputApellido">Apellido</label>
+                                        <input type="text" class="form-control" id="inputApellido" placeholder="Apellido">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="correo@ejemplo.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputTelefono">Teléfono</label>
+                                    <input type="tel" class="form-control" id="inputTelefono" placeholder="(123) 456-7890">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDireccion">Dirección</label>
+                                    <input type="text" class="form-control" id="inputDireccion" placeholder="Calle Falsa 123">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </form>
+                            <hr class="custom-hr">
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Ubicación en el Mapa</h6>
 
-    </section>
+                            <div id="map"></div> <!-- Add Google Maps integration here -->
+                            <p class="card-text"><small class="text-body-secondary">Recuerde que ante cualquier duda puede comunicarse con nostros en <a th:href="@{/contacto}">contacto</a>.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step3" class="hidden">
+                <h2 class="text-center">Paso 3/3: Revisión y Pago</h2>
+                <div id="review-details">
+                   <p>Loren insupLoren insupLoren insup Loren insupLoren insupLoren insupLoren insupvLoren insupLoren insupLoren insup Loren insupLoren insup Loren insup</p>
+                </div>
+            </div>
+
+        </section>
+        <section class="total-section">
+            <div class="card text-center" style="height: 15rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Resumen de pedido</h5>
+                    <hr class="custom-hr">
+                    <div class="cart-total">
+                        Total: $<span id="cart-total" th:text="${total}">0</span>
+                    </div>
+                    <div style="display:flex;">
+                        <button id="btnStep1" class="btn-cart-step" >Continuar</button>
+                    </div>
+                    <div  style="display:flex;">
+                        <button id="btnStep2" class="btn-cart-step hidden">Continuar</button>
+                    </div>
+                    <div class="btn-cart hidden" id="wallet_container" style="width:100%;"></div>
+                </div>
+            </div>
+
+        </section>
+    </main>
     <footer th:insert="~{layout/layout :: footer}"></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script th:src="@{/js/carrito.js}"></script>
