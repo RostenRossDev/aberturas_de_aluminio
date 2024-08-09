@@ -71,7 +71,7 @@ function updateItemCartTotal(itemId) {
     let total = filteredItems.reduce((sum, item) => sum + (item.price * (1 - item.discount / 100) * item.quantity), 0);
     let totalDisplay = document.getElementById('item-total-' + itemId);
     if (totalDisplay) {
-        totalDisplay.textContent = "Total: " + total.toFixed(2);
+        totalDisplay.textContent = total.toFixed(2);
         updateCartIcon();
     }
 }
