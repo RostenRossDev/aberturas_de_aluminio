@@ -20,13 +20,13 @@ body{
 .checkout-step {
     transition: opacity 0.5s ease, transform 0.5s ease;
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(50%);
 }
 
 .checkout-step.active {
     opacity: 1;
     transform: translateX(0);
-    display: flex; /* O display: flex, según necesites */
+    /*display: flex; /* O display: flex, según necesites */
 }
 
 .display-no {
@@ -667,15 +667,16 @@ header {
 }
 
 .btn-cart-step {
-    padding: 10px 20px; /* Ajusta el padding para el tamaño del botón */
+    padding: 0px 20px; /* Ajusta el padding para el tamaño del botón */
     font-size: 1.5em; /* Ajusta el tamaño de la fuente */
     background-color: #007bff; /* Color de fondo del botón */
     color: white; /* Color del texto del botón */
     border: none; /* Elimina el borde por defecto */
     border-radius: 4px; /* Añade bordes redondeados */
     cursor: pointer; /* Cambia el cursor al pasar por encima */
-    width: 40%; /* Ajusta el ancho al contenido del botón */
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    width: 100%; /* Ajusta el ancho al contenido del botón */
+    height:48px;
+    margin: 16px auto; /* Centra el contenedor horizontalmente */
     justify-content: center;
 }
 

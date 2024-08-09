@@ -194,16 +194,20 @@ function showStep(stepToShow, currentStep, currentButon, buttonToShow) {
         console.error("Uno de los pasos no existe en el DOM:", currentStep, stepToShow);
         return;
     }
-
+    let pickupDetailElement;
     console.log("stepToShow:", stepToShow, "currentStep:", currentStep);
     if(stepToShow == "step2"){
-        let pickupDetailElement = document.getElementById("pickup-details");
+        pickupDetailElement = document.getElementById("pickup-details");
         pickupDetailElement.classList.remove('hidden');
     }else if(stepToShow == "step3"){
-        let pickupDetailElement = document.getElementById("pickup-details");
+        let pickupElement = document.getElementById("pickup-details");
         let deliveryDetailsElement = document.getElementById("delivery-details");
-        pickupDetailElement.classList.add('hidden');
+        pickupElement.classList.add('hidden');
         deliveryDetailsElement.classList.add('hidden');
+        pickupElement.classList.remove('checkout-step');
+        deliveryDetailsElement.classList.remove('checkout-step');
+        pickupElement.classList.remove('active');
+        deliveryDetailsElement.classList.remove('active');
     }
     // Ocultar la sección actual
     currentStepElement.classList.remove('active');
@@ -216,6 +220,9 @@ function showStep(stepToShow, currentStep, currentButon, buttonToShow) {
     // Usar un pequeño retraso para permitir que el navegador procese la visibilidad antes de aplicar la transición
     setTimeout(() => {
         stepToShowElement.classList.add('active');
+        if(pickupDetailElement){
+            pickupDetailElement.classList.add('active');
+        }
     }, 10);
 }
 
