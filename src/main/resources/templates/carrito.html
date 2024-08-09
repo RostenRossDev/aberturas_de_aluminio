@@ -16,7 +16,7 @@
     <main class="row" style="width: 100%;justify-content: center;padding: 1%;" >
         <section class="carrito-section">
             <div id="step1" class="active">
-                <h2 class="text-center">Detalles del carrito</h2>
+                <h3 class="text-center">Detalles del carrito</h3>
                 <div id="cart-details">
                     <div id="cart-items">
                         <div th:each="item : ${cartItems}" th:attr="id='item-' + ${item.id}" class="item">
@@ -60,7 +60,7 @@
             </div>
 
             <div id="step2" class="checkout-step hidden">
-                <h2 class="text-center">Método de entrega</h2>
+                <h3 class="text-center">Método de entrega</h3>
                 <div class="envio">
                     <div class="mx-5">
                         <input type="radio" class="btn-check" name="options-outlined" id="local" autocomplete="off" checked>
@@ -134,7 +134,7 @@
             </div>
 
             <div id="step3" class="checkout-step hidden">
-                <h2 class="text-center">Paso 3/3: Revisión y Pago</h2>
+                <h3 class="text-center">Revisión y Pago</h3>
                 <div id="review-details">
                    <p>Loren insupLoren insupLoren insup Loren insupLoren insupLoren insupLoren insupvLoren insupLoren insupLoren insup Loren insupLoren insup Loren insup</p>
                 </div>
